@@ -1,9 +1,13 @@
 <table class= "table table-striped table-bordered" >
 		<tr>
 			<th>Away</th>
-			<th>Away Predictor</th>
+			<th>Away Pre</th>
 			<th>Home</th>
-			<th>Home Predictor</th>
+			<th>Home Pre</th>
+			<th>Home Edge</th>
+			<th>Proj Spread</th>
+			<th>Cov Spread</th>
+			<th>Diff</th>
 		<tr>
 
 	<% @games.each do |t| %>
@@ -12,6 +16,11 @@
 			<td><%= t.away_predictor %></td>
 			<td><%= t.home %></td>
 			<td><%= t.home_predictor %></td>
+			<td><%= t.home_edge %></td>
+			<td><%= t.projected_spread %></td>
+			<td><%= t.spread_wagerline %></td>
+			<td><%= t.diff %></td>
 		<tr>	
 	<% end %>
 </table>
+
