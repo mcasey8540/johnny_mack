@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221224451) do
+ActiveRecord::Schema.define(:version => 20121221231429) do
 
   create_table "games", :force => true do |t|
     t.string   "away"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20121221224451) do
     t.float    "diff"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "scrape_id"
   end
 
   create_table "scrapes", :force => true do |t|
