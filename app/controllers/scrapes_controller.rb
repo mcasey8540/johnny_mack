@@ -4,12 +4,14 @@ class ScrapesController < ApplicationController
   end
 
   def show
+  	@scrape = Scrape.find(params[:id])
+  	@games  = @scrape.games
   end
 
   def new
   	@scrape = Scrape.new
-  	Scrape.data_scrape
   	@scrape.save
+  	Scrape.data_scrape(@scrape.id)
   	redirect_to root_path
   end
 
