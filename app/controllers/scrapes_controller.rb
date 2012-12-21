@@ -16,6 +16,8 @@ class ScrapesController < ApplicationController
   end
 
   def delete
+  	Scrape.destroy(params[:id])
+  	redirect_to root_path
   end
 
 end
