@@ -10,6 +10,7 @@
 			<th>Proj Spread</th>
 			<th>Cov Spread</th>
 			<th>Diff</th>
+			<th>Edge</th>
 		<tr>
 
 	<% @games.each do |t| %>
@@ -22,6 +23,7 @@
 			<td><%= t.projected_spread %></td>
 			<td><%= t.spread_wagerline %></td>
 			<td><%= t.diff %></td>
+			<td><%= t.edge %></td>
 		<tr>	
 	<% end %>
 </table>
