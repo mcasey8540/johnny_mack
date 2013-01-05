@@ -1,6 +1,7 @@
 require 'open-uri'
 
 class Scrape < ActiveRecord::Base
+	validates :
   has_many :games
 
   def self.data_scrape(id)
@@ -20,7 +21,7 @@ class Scrape < ActiveRecord::Base
 
 		n = games.size/3
 
-		start_away = 0
+		start_away = 0 t
 		start_home = n
 		start_cover = n*2 
 
