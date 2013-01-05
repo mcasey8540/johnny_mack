@@ -1,7 +1,6 @@
 require 'open-uri'
 
 class Scrape < ActiveRecord::Base
-	validates :
   has_many :games
 
   def self.data_scrape(id)
