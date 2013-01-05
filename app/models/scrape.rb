@@ -20,7 +20,7 @@ class Scrape < ActiveRecord::Base
 
 		n = games.size/3
 
-		start_away = 0 t
+		start_away = 0
 		start_home = n
 		start_cover = n*2 
 
@@ -208,12 +208,11 @@ class Scrape < ActiveRecord::Base
 					end
 				end
 
-			home_edge 			 = (home_predictor.to_f + v1[4].split("[")[3].split("]")[0].strip.to_f).round(2)
-			projected_spread = (away_predictor.to_f - home_edge.to_f).round(2)
-			spread_covers    = cd["cover"].to_f.round(2)
-			diff 						 = (spread_covers.abs - projected_spread.abs).abs.round(2)
-			edge 						 = spread_covers > projected_spread ? cd["home_team"] : cd["away_team"]
-
+				home_edge 			 = (home_predictor.to_f + v1[4].split("[")[3].split("]")[0].strip.to_f).round(2)
+				projected_spread = (away_predictor.to_f - home_edge.to_f).round(2)
+				spread_covers    = cd["cover"].to_f.round(2)
+				diff 						 = (spread_covers.abs - projected_spread.abs).abs.round(2)
+				edge 						 = spread_covers > projected_spread ? cd["home_team"] : cd["away_team"]
 
 			# csv << [date, cd["away_team"], away_predictor, cd["home_team"], home_predictor, home_edge, projected_spread, spread_covers, diff, edge ]
 				@game = @scrape.games.new( :away => cd["away_team"], :away_predictor => away_predictor, :home => cd["home_team"], :home_predictor => home_predictor, :home_edge => home_edge, :projected_spread => projected_spread, :spread_wagerline => spread_covers, :diff =>  diff, :edge => edge)
