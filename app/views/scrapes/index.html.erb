@@ -5,7 +5,7 @@
 			<th>Scrape Date</th>
 			<th>Options</th>
 		<tr>
-
+	
 	<% @scrapes.each do |t| %>
 		<tr>
 			<td><%= link_to t.created_at.to_date, scrape_path(t.id) %></td>

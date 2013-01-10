@@ -1,6 +1,6 @@
 class ScrapesController < ApplicationController
   def index
-  	@scrapes = Scrape.all
+  	@scrapes = Scrape.order("created_at DESC")
   end
 
   def show
