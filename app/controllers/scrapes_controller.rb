@@ -1,6 +1,10 @@
 class ScrapesController < ApplicationController
   def index
-  	@scrapes = Scrape.order("created_at DESC")
+    if params[:start_date].nil?
+  	  @scrapes = Scrape.order("created_at DESC")
+    else
+      @scrapes = Scrape.where("created_at between :start_date and :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]}).order("created_at DESC")
+    end
   end
 
   def show

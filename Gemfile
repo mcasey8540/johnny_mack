@@ -9,7 +9,6 @@ gem 'tweetstream'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'nokogiri'
-#gem 'open-uri'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
