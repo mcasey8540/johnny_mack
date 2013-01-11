@@ -30,16 +30,16 @@
 
 	<% @games.each do |t| %>
 		<tr>
-			<td><%= t.created_at.to_date %></td>
-			<td><%= t.away %></td>
-			<td><%= t.away_predictor %></td>
-			<td><%= t.home %></td>
-			<td><%= t.home_predictor %></td>
-			<td><%= t.home_edge %></td>
-			<td><%= t.projected_spread %></td>
-			<td><%= t.spread_wagerline %></td>
-			<td><%= t.diff %></td>
-			<td><%= t.edge %></td>
+			<td><%= t[0] %></td>
+			<td><%= t[1] %></td>
+			<td><%= t[2] %></td>
+			<td><%= t[3] %></td>
+			<td><%= t[4] %></td>
+			<td><%= t[5] %></td>
+			<td><%= t[6] %></td>
+			<td><%= t[7] %></td>
+			<td><%= t[8] %></td>
+			<td><%= t[9] %></td>
 		<tr>	
 	<% end %>
 </table>

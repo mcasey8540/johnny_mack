@@ -7,8 +7,20 @@ class GamesController < ApplicationController
       @games = []
     else
       @games = Game.where("home = :team OR away = :team", {:team => params[:team]}).order("created_at DESC")
+      @games.map!{|t|	
+      [
+      t.created_at.to_date,
+			t.away,
+			t.away_predictor,
+			t.home,
+			t.home_predictor,
+			t.home_edge,
+			t.projected_spread,
+			t.spread_wagerline,
+			t.diff,
+			t.edge]
+			}.uniq!
     end
-    puts params
   end 
 
 end
