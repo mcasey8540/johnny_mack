@@ -5,6 +5,7 @@ class ScrapesController < ApplicationController
     else
       @scrapes = Scrape.where("created_at between :start_date and :end_date", {:start_date => params[:start_date], :end_date => params[:end_date]}).order("created_at DESC")
     end
+    @home_teams = Game.select(:home).uniq.order("home").map {|game| game.home}
   end
 
   def show

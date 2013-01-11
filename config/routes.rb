@@ -12,4 +12,6 @@ JohnnyMack::Application.routes.draw do
 
   match 'scrapes/:id/delete' => 'scrapes#delete', :as => :delete_scrape
 
+  match 'games' => 'games#index', :as => :games
+
 end
