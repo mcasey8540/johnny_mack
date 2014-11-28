@@ -21,6 +21,11 @@ class GamesController < ApplicationController
 			t.edge]
 			}.uniq!
     end
+  end
+
+  def get_all_scores
+  	Game.get_all_scores
+  	redirect_to root_path
   end 
 
 end

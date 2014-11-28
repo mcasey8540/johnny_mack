@@ -17,15 +17,14 @@ class ScrapesController < ApplicationController
 
   def show
   	@scrape = Scrape.find(params[:id])
-    @scrape.get_scores
+    #@scrape.get_scores
   	@games  = @scrape.games
   end
 
-  # def get_scores
-  #   @scrape = Scrape.find(params[:id])
-  #   @scrape.get_scores
-  #   redirect_to @scrape
-  # end  
+  def get_scores
+    @scrape = Scrape.find(params[:id])
+    @scrape.get_scores    
+  end 
 
   def new
   	@scrape = Scrape.new

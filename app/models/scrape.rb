@@ -50,7 +50,6 @@ class Scrape < ActiveRecord::Base
 	end	
   end
 
-
   def clean_name(teamname)
   	#remove spaces
   	team = teamname.gsub(/\s+/,'-')

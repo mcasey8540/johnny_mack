@@ -1,34 +1,44 @@
-<%= button_to "Back to All Scrapes", root_path, class: "btn btn-info" %>
+<div class="row">
+	<div class="col-xs-2 col-md-2">		
+		<%= button_to "Back to All Scrapes", root_path, class: "btn btn-info" %>
+	</div>
+	<div class="col-xs-8 col-md-8"></div>	
+	<div class="col-xs-2 col-md-2">
+		<%= button_to "Re-Fetch Scores", get_scores_path, class: "btn btn-warning pull-right" %>
+	</div>
+</div>
 <hr>
-<table class="table table-striped" >
-		<tr>
-			<th>Away</th>
-			<th>Away Pre</th>
-			<th>Home</th>
-			<th>Home Pre</th>
-			<th>Home Edge</th>
-			<th>Proj Spread</th>
-			<th>Cov Spread</th>
-			<th>Diff</th>
-			<th>Edge</th>
-			<th>Away Final</th>
-			<th>Home Final</th>			
-		<tr>
+<div class="row">
+	<table class="table table-striped" >
+			<tr>
+				<th>Away</th>
+				<th>Away Pre</th>
+				<th>Home</th>
+				<th>Home Pre</th>
+				<th>Home Edge</th>
+				<th>Proj Spread</th>
+				<th>Cov Spread</th>
+				<th>Diff</th>
+				<th>Edge</th>
+				<th>Away Final</th>
+				<th>Home Final</th>			
+			<tr>
 
-	<% @games.each do |t| %>
-		<tr>
-			<td><%= t.away %></td>
-			<td><%= t.away_predictor %></td>
-			<td><%= t.home %></td>
-			<td><%= t.home_predictor %></td>
-			<td><%= t.home_edge %></td>
-			<td><%= t.projected_spread %></td>
-			<td><%= t.spread_wagerline %></td>
-			<td><%= t.diff %></td>
-			<td><%= t.edge %></td>
-			<td><%= t.awayfinal %></td>
-			<td><%= t.homefinal %></td>			
-		<tr>	
-	<% end %>
-</table>
+		<% @games.each do |t| %>
+			<tr>
+				<td><%= t.away %></td>
+				<td><%= t.away_predictor %></td>
+				<td><%= t.home %></td>
+				<td><%= t.home_predictor %></td>
+				<td><%= t.home_edge %></td>
+				<td><%= t.projected_spread %></td>
+				<td><%= t.spread_wagerline %></td>
+				<td><%= t.diff %></td>
+				<td><%= t.edge %></td>
+				<td><%= t.awayfinal %></td>
+				<td><%= t.homefinal %></td>			
+			<tr>	
+		<% end %>
+	</table>
+</div>
 
