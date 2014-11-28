@@ -1,14 +1,9 @@
 <div class="row">
-	<div class="col-xs-2 col-md-2">		
-		<%= button_to "Back to All Scrapes", root_path, class: "btn btn-info" %>
-	</div>
-	<div class="col-xs-8 col-md-8"></div>	
-	<div class="col-xs-2 col-md-2">
+	<div class="col-xs-12 col-md-12">		
+		<%= button_to "Back to All Scrapes", root_path, class: "btn btn-info pull-left" %>
 		<%= button_to "Re-Fetch Scores", get_scores_path, class: "btn btn-warning pull-right" %>
-	</div>
-</div>
-<hr>
-<div class="row">
+	<br>	
+	<br>	
 	<table class="table table-striped" >
 			<tr>
 				<th>Away</th>

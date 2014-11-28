@@ -1,8 +1,6 @@
-<div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-s-12 col-md-12">
 			<a class="btn btn-primary" href="/scrapes/new">New Scrape</a>
-			<a class="btn btn-warning" href="/games/get_all_scores">Fetch All Scores</a>
 			<div class="dropdown pull-right">
 			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 			    <i class="fa fa-file-excel-o"></i>&nbspExport
@@ -12,8 +10,7 @@
 			    <li role="presentation"><%= link_to "CSV", scrapes_path(format: "csv") %></li>
 			    <li role="presentation"><%= link_to "Excel", scrapes_path(format: "xls") %></li>
 			  </ul>
-			</div>				
-		</div>		
+			</div>					
 <!-- 		<div class="pull-right">
 <!-- 			<div class="btn-group">
 				  <button class="btn">Filter By Month</button>
@@ -36,10 +33,9 @@
 				    		<%= link_to "#{t}", games_path({:team => "#{t}"}) %> </br>
 				    		<% end %>
 				  		</ul>
-			</div> -->			
-	</div>
-	<br>
-	<div class="row">
+			</div> -->
+		<br>	
+		<br>				
 		<table class="table table-striped" >
 				<tr>
 					<th>Scrape Date</th>
@@ -55,6 +51,6 @@
 				</tbody>		
 		</table>
 	</div>
-</div>		
+</div>			
 
 
