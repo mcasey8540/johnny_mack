@@ -9,9 +9,9 @@ task :get_new_scrape => :environment do
 end
 
 task :get_last_scrape_scores => :environment do
-	date = Scrape.last.created_at
-	puts "Fetching Scores for Scrape #{date}..."
-	Game.get_all_scores(date)
+	@scrape = Scrape.last
+	puts "Fetching Scores for Scrape #{@scrape.created_at}..."
+	@scrape.get_scores
   puts "Fetch done."
 end
 
