@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121222150252) do
+ActiveRecord::Schema.define(:version => 20141128173059) do
 
   create_table "games", :force => true do |t|
     t.string   "away"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20121222150252) do
     t.datetime "updated_at",       :null => false
     t.integer  "scrape_id"
     t.string   "edge"
+    t.float    "homefinal"
+    t.float    "awayfinal"
   end
 
   create_table "scrapes", :force => true do |t|
