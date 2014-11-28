@@ -6,7 +6,7 @@ class Scrape < ActiveRecord::Base
   def self.to_csv(options = {})
   	CSV.generate(options) do |csv|
   		#csv << "Away"
-  		csv << ["Scrape Date", "Away", "Away Pre", "Home", "Home Pre", "Home Edge", "Projected Spread", "Covers Spread", "Diff", "Edge"].map{|c| c.capitalize}
+  		csv << ["Scrape Date", "Away", "Away Pre", "Home", "Home Pre", "Home Edge", "Projected Spread", "Covers Spread", "Diff", "Edge", "AwayFinal", "HomeFinal"].map{|c| c.capitalize}
   		all.each do |scrape|
   			scrape.games.each do |g|
   				csv << [g.attributes.values_at("created_at")[0].to_date,
@@ -18,12 +18,49 @@ class Scrape < ActiveRecord::Base
   						g.attributes.values_at("projected_spread")[0], 
    						g.attributes.values_at("spread_wagerline")[0], 
    						g.attributes.values_at("diff")[0], 
-   						g.attributes.values_at("edge")[0] 
+   						g.attributes.values_at("edge")[0],
+   						g.attributes.values_at("awayfinal")[0], 
+   						g.attributes.values_at("homefinal")[0]    						 
    						]        						   
   			end
   		end
   	end
-  end  
+  end
+
+  def get_scores
+  	self.games.each do |g|	
+  		d = g.created_at
+  		home_clean = clean_name(g.home)
+  		away_clean = clean_name(g.away)
+  		begin	
+  			num = 0;
+  			ncaa_doc = Nokogiri::HTML(open("http://www.ncaa.com/game/basketball-men/d1/#{d.year}/#{d.month}/#{d.day}/#{away_clean}-#{home_clean}"))
+  			ncaa_doc.css(".score").each do |node|
+  				num == 0 ? g.awayfinal = node.content : g.homefinal = node.content 
+ 				num += 1
+  			end
+  			g.save!
+		rescue OpenURI::HTTPError => e
+		  if e.message == '404 Not Found'
+		    puts away_clean + "		" + home_clean + "		" + "http://www.ncaa.com/game/basketball-men/d1/#{d.year}/#{d.month}/#{d.day}/#{away_clean}-#{home_clean}"
+		  else
+		    raise e
+		  end
+		end
+	end	
+  end
+
+
+  def clean_name(teamname)
+  	#remove spaces
+  	team = teamname.gsub(/\s+/,'-')
+  	#remove periods
+  	team = team.gsub('.','')
+  	#remove periods
+  	team = team.gsub("'",'') 
+  	#lowercase
+  	team.downcase 	
+  end 
 
   def self.data_scrape(id)
   	puts "------------#{id}"

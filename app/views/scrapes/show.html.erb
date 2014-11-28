@@ -11,6 +11,8 @@
 			<th>Cov Spread</th>
 			<th>Diff</th>
 			<th>Edge</th>
+			<th>Away Final</th>
+			<th>Home Final</th>			
 		<tr>
 
 	<% @games.each do |t| %>
@@ -24,6 +26,8 @@
 			<td><%= t.spread_wagerline %></td>
 			<td><%= t.diff %></td>
 			<td><%= t.edge %></td>
+			<td><%= t.awayfinal %></td>
+			<td><%= t.homefinal %></td>			
 		<tr>	
 	<% end %>
 </table>
