@@ -11,3 +11,25 @@
  *= require_self
  *= require_tree .
  */
+
+/* Application Wide */
+
+body{
+	background-color: rgb(69,74,84);
+}
+
+.main-body{
+	margin-top: 70px;
+}
+
+/* Nav Bar */
+
+.navbar-brand{
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+}
+
+sub.app-version{
+	font-family: 'Arial';
+	font-size: 10px;
+}
