@@ -3,6 +3,28 @@ require 'open-uri'
 class Scrape < ActiveRecord::Base
   has_many :games
 
+  def self.to_csv(options = {})
+  	CSV.generate(options) do |csv|
+  		#csv << "Away"
+  		csv << ["Scrape Date", "Away", "Away Pre", "Home", "Home Pre", "Home Edge", "Projected Spread", "Covers Spread", "Diff", "Edge"].map{|c| c.capitalize}
+  		all.each do |scrape|
+  			scrape.games.each do |g|
+  				csv << [g.attributes.values_at("created_at")[0].to_date,
+  						g.attributes.values_at("away")[0], 
+  						g.attributes.values_at("away_predictor")[0],
+  						g.attributes.values_at("home")[0],
+  						g.attributes.values_at("home_predictor")[0],
+  						g.attributes.values_at("home_edge")[0],
+  						g.attributes.values_at("projected_spread")[0], 
+   						g.attributes.values_at("spread_wagerline")[0], 
+   						g.attributes.values_at("diff")[0], 
+   						g.attributes.values_at("edge")[0] 
+   						]        						   
+  			end
+  		end
+  	end
+  end  
+
   def self.data_scrape(id)
   	puts "------------#{id}"
   	@scrape = Scrape.find(id)
