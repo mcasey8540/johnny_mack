@@ -6,9 +6,8 @@ class Game < ActiveRecord::Base
   attr_accessible :away, :away_predictor, :diff, :home, :home_edge, :home_predictor, :projected_spread, :spread_wagerline, :scrape_id, :edge
   belongs_to :scrape
 
-  def self.get_all_scores
-  	Game.all.each do |g|
-  		if g.created_at.to_date > "2014-11-01".to_date 
+  def self.get_all_scores(date = "2014-11-01")
+  	Game.all.map{|game| game.created_at > date.to_date}.each do |g| 
 	  		d = g.created_at
 	  		home_clean = self.clean_name(g.home)
 	  		away_clean = self.clean_name(g.away)
@@ -27,7 +26,6 @@ class Game < ActiveRecord::Base
 			    raise e
 			  end
 			end
-		end
 	end	  		
   end
 
