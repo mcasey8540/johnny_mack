@@ -7,25 +7,25 @@ class Game < ActiveRecord::Base
   belongs_to :scrape
 
   def self.get_all_scores(date = "2014-11-01")
-  	Game.all.map{|game| game.created_at > date.to_date}.each do |g| 
-	  		d = g.created_at
-	  		home_clean = self.clean_name(g.home)
-	  		away_clean = self.clean_name(g.away)
-	  		begin	
-	  			num = 0;
-	  			ncaa_doc = Nokogiri::HTML(open("http://www.ncaa.com/game/basketball-men/d1/#{d.year}/#{d.month}/#{d.day}/#{away_clean}-#{home_clean}"))
-	  			ncaa_doc.css(".score").each do |node|
-	  				num == 0 ? g.awayfinal = node.content : g.homefinal = node.content 
-	 				num += 1
-	  			end
-	  			g.save!
-			rescue OpenURI::HTTPError => e
-			  if e.message == '404 Not Found'
-			    puts away_clean + "		" + home_clean + "		" + "http://www.ncaa.com/game/basketball-men/d1/#{d.year}/#{d.month}/#{d.day}/#{away_clean}-#{home_clean}"
-			  else
-			    raise e
-			  end
-			end
+  	Game.where(["created_at > ?", date.to_date]).each do |g| 
+  		d = g.created_at
+  		home_clean = self.clean_name(g.home)
+  		away_clean = self.clean_name(g.away)
+  		begin	
+  			num = 0;
+  			ncaa_doc = Nokogiri::HTML(open("http://www.ncaa.com/game/basketball-men/d1/#{d.year}/#{d.month}/#{d.day}/#{away_clean}-#{home_clean}"))
+  			ncaa_doc.css(".score").each do |node|
+  				num == 0 ? g.awayfinal = node.content : g.homefinal = node.content 
+ 				num += 1
+  			end
+  			g.save!
+		rescue OpenURI::HTTPError => e
+		  if e.message == '404 Not Found'
+		    puts away_clean + "		" + home_clean + "		" + "http://www.ncaa.com/game/basketball-men/d1/#{d.year}/#{d.month}/#{d.day}/#{away_clean}-#{home_clean}"
+		  else
+		    raise e
+		  end
+		end
 	end	  		
   end
 
