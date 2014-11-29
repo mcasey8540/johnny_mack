@@ -44,7 +44,8 @@
 					<% @scrapes.each do |t| %>
 						<tr>
 							<td><%= link_to t.created_at.to_date, scrape_path(t.id) %></td>
-<!-- 							<td><%= button_to "Delete", delete_scrape_path(t.id), :method => :delete, class: "btn btn-danger pull-right" %></td> -->		  <td><%= t.games.count %></td>
+<!-- 							<td><%= button_to "Delete", delete_scrape_path(t.id), :method => :delete, class: "btn btn-danger pull-right" %></td> -->		  
+							<td><span class="badge"><%= t.games.count %></span></td>
 						<tr>	
 					<% end %>
 				</tbody>		
