@@ -38,13 +38,13 @@
 		<table class="table table-striped" >
 				<tr>
 					<th>Scrape Date</th>
-					<th></th>
+					<th>Games</th>
 				<tr>
 				<tbody>		
 					<% @scrapes.each do |t| %>
 						<tr>
 							<td><%= link_to t.created_at.to_date, scrape_path(t.id) %></td>
-							<td><%= button_to "Delete", delete_scrape_path(t.id), :method => :delete, class: "btn btn-danger pull-right" %></td>
+<!-- 							<td><%= button_to "Delete", delete_scrape_path(t.id), :method => :delete, class: "btn btn-danger pull-right" %></td> -->		  <td><%= t.games.count %></td>
 						<tr>	
 					<% end %>
 				</tbody>		
